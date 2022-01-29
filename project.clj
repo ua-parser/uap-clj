@@ -1,4 +1,4 @@
-(defproject com.github.quezion/uap-clj "1.3.7"
+(defproject com.github.quezion/uap-clj "1.3.8"
   :description "Clojure language implementation of ua-parser"
   :url "https://github.com/quezion/uap-clj"
   :license {:name "The MIT License (MIT)"
