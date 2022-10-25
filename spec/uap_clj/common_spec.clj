@@ -1,6 +1,6 @@
 (ns uap-clj.common-spec
   (:require [clojure.java.io :as io :refer [resource]]
-            [clj-yaml.core :refer [parse-string default-loader-options]])
+            [clj-yaml.core :refer [parse-string]])
   (:import [org.yaml.snakeyaml LoaderOptions]))
 
 (def ^:const unknown-ua "Unknown new useragent in the wild/v0.1.0")
@@ -22,6 +22,6 @@
         file-size (count raw-file)]
     (if (>= file-size (default-codepoint-limit))
       (:test_cases
-        (with-redefs-fn {#'clj-yaml.core/default-loader-options #(snakeyaml-loader-options file-size)}
-          #(parse-string raw-file)))
+        (with-redefs [clj-yaml.core/default-loader-options #(snakeyaml-loader-options file-size)]
+          (parse-string raw-file)))
       (:test_cases (parse-string raw-file)))))
